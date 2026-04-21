@@ -32,7 +32,6 @@
       line-height: 1.6;
     }
 
-    /* Header */
     header {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
@@ -81,14 +80,12 @@
       font-weight: 500;
     }
 
-    /* Layout */
     .layout {
       display: grid;
       grid-template-columns: 260px 1fr;
       min-height: calc(100vh - 64px);
     }
 
-    /* Sidebar */
     aside {
       background: var(--surface);
       border-right: 1px solid var(--border);
@@ -154,15 +151,12 @@
       color: white;
     }
 
-    /* Main */
     main {
       padding: 2rem 2.5rem;
       overflow-y: auto;
     }
 
-    .main-header {
-      margin-bottom: 1.75rem;
-    }
+    .main-header { margin-bottom: 1.75rem; }
 
     .main-title {
       font-family: 'DM Serif Display', serif;
@@ -177,17 +171,13 @@
       margin-top: 0.25rem;
     }
 
-    /* Search bar */
     .filters-bar {
       display: flex;
       gap: 0.75rem;
       margin-bottom: 1.5rem;
     }
 
-    .search-wrap {
-      position: relative;
-      flex: 1;
-    }
+    .search-wrap { position: relative; flex: 1; }
 
     .search-icon {
       position: absolute;
@@ -214,7 +204,6 @@
 
     input[type="text"]:focus { border-color: var(--accent); }
 
-    /* Clip cards */
     .clips-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -270,7 +259,6 @@
       font-weight: 500;
     }
 
-    /* Empty state */
     .empty-state {
       text-align: center;
       padding: 4rem 2rem;
@@ -286,7 +274,6 @@
       margin-bottom: 0.5rem;
     }
 
-    /* Category colors */
     .cat-0 { background: #dbeafe; color: #1d4ed8; }
     .cat-1 { background: #fce7f3; color: #9d174d; }
     .cat-2 { background: #d1fae5; color: #065f46; }
@@ -329,7 +316,6 @@
 </header>
 
 <div class="layout">
-
   <aside>
     <div class="sidebar-section-label">All Plays</div>
     <button class="sidebar-btn active" onclick="filterCategory('all')" id="btn-all">
@@ -337,7 +323,6 @@
       All Clips
       <span class="sidebar-count" id="count-all">0</span>
     </button>
-
     <div class="sidebar-section-label">Categories</div>
     <div id="category-list"></div>
   </aside>
@@ -347,93 +332,121 @@
       <h1 class="main-title" id="current-category-title">All Clips</h1>
       <p class="main-sub" id="current-category-sub">Browse your film analysis notes</p>
     </div>
-
     <div class="filters-bar">
       <div class="search-wrap">
         <span class="search-icon">🔍</span>
         <input type="text" placeholder="Search clips, notes, tags…" id="search-input" oninput="renderClips()" />
       </div>
     </div>
-
     <div class="clips-grid" id="clips-grid"></div>
   </main>
 </div>
 
 <script>
   // ================================================================
-  // ✏️  EDIT YOUR DATA HERE
+  // ✏️  CATEGORIES — define your categories here, in display order.
+  //     Each entry needs: id, name, desc
   // ================================================================
-
   const categories = [
-    { id: 'offense',   name: 'Offense',     desc: 'Offensive sets, resets, and scoring plays' },
-    { id: 'defense',   name: 'Defense',      desc: 'Defensive positioning, poaches, and D-blocks' },
-    { id: 'handler',   name: 'Handler Sets', desc: 'Handler motion and reset systems' },
-    { id: 'endzone',   name: 'Endzone',     desc: 'End zone offense and defense' },
-    { id: 'zone',      name: 'Zone',    desc: 'Unforced errors and transitions' },
+    { id: 'offense',  name: 'Offense',      desc: 'Offensive sets, resets, and scoring plays' },
+    { id: 'defense',  name: 'Defense',      desc: 'Defensive positioning, poaches, and D-blocks' },
+    { id: 'handler',  name: 'Handler Sets', desc: 'Handler motion and reset systems' },
+    { id: 'endzone',  name: 'Endzone',      desc: 'End zone offense and defense' },
+    { id: 'zone',     name: 'Zone',         desc: 'Zone offense and defense' },
   ];
 
-  const clips = [
+  // ================================================================
+  // ✏️  CLIPS — add new clips here. Rules:
+  //
+  //   • NO id field needed — it's auto-generated from the title.
+  //   • categoryId must match one of the ids above.
+  //   • Clips display in the ORDER you write them here, grouped
+  //     by category order (offense first, defense second, etc.).
+  //   • video is optional — leave as '' to omit the player.
+  //   • tags is optional — leave as [] for no tags.
+  //
+  //  To add a clip, copy one block and paste it at the end of its
+  //  category group. That's it!
+  // ================================================================
+  const clipsRaw = [
+    // ── OFFENSE ──────────────────────────────────────────────────
     {
-      id: 'c1',
       categoryId: 'offense',
       title: 'Defensively Forced Deep',
       notes: 'Dark #15 is being forced deep, so he does what he is forced. He then sees the disk is swung, so he runs to the other side where the disk will be.',
       tags: ['isolation', 'vertical stack'],
-      video: 'videos/Rutledge.mp4',   
+      video: 'videos/Rutledge.mp4',
     },
     {
-      id: 'c2',
       categoryId: 'offense',
       title: 'Well Timed Deep Cut',
-      notes: '#16 does not cut deep until he make eye contact with the thrower.',
+      notes: '#16 does not cut deep until he makes eye contact with the thrower.',
       tags: ['isolation', 'deep cut'],
-      video: 'videos/Anders.mp4',   
+      video: 'videos/Anders.mp4',
     },
     {
-      id: 'c3',
       categoryId: 'offense',
       title: 'Well Timed Continuation Cut off of Breakside Movement',
-      notes: 'There are two cuts to the breakside. The first one sees the second one and decides to cut for him just when he finishes his cut by cutting back under for the disk',
+      notes: 'There are two cuts to the breakside. The first one sees the second one and decides to cut for him just when he finishes his cut by cutting back under for the disk.',
       tags: ['isolation', 'break cut'],
-      video: 'videos/Osgar.mp4',   
+      video: 'videos/Osgar.mp4',
     },
+
+    // ── DEFENSE ──────────────────────────────────────────────────
     {
-      id: 'c4',
       categoryId: 'defense',
       title: 'Bracket',
       notes: 'Poacher reads the break-side look perfectly and picks off the around throw. Great communication with the marker to bait the throw.',
       tags: ['bracket', 'switching'],
       video: '',
     },
+
+    // ── HANDLER SETS ─────────────────────────────────────────────
     {
-      id: 'c5',
-      categoryId: 'endzone',
-      title: '1 Cut in Endzone',
-      notes: "The cutter for the disk doesn't move for the disk to the open space until the thrower has the disc in his hand.",
-      tags: ['end zone', 'horizontal', 'timing'],
-      video: '',
-    },
-    {
-      id: 'c6',
       categoryId: 'handler',
       title: 'Dump-Swing-Break Sequence',
       notes: 'Textbook 3-throw sequence: clean dump reset, immediate swing to the open side, then a sharp inside-out break to the end zone. The mark was late rotating.',
       tags: ['dump', 'swing', 'break', 'reset'],
       video: '',
     },
+
+    // ── ENDZONE ──────────────────────────────────────────────────
     {
-      id: 'c7',
+      categoryId: 'endzone',
+      title: '1 Cut in Endzone',
+      notes: "The cutter for the disk doesn't move to the open space until the thrower has the disc in his hand.",
+      tags: ['end zone', 'horizontal', 'timing'],
+      video: '',
+    },
+
+    // ── ZONE ─────────────────────────────────────────────────────
+    {
       categoryId: 'zone',
-      title: '',
-      notes: '',
-      tags: [],
-      video: '',   
+      title: 'Breaking a Zone',
+      notes: "Every player is much closer no matter what. Fakes are constantly thrown. The thrower has to be very careful with the timing of the throw and the fake. The cutter has to be very patient and time their cut perfectly.",
+      tags: ['zone', 'fakes'],
+      video: '',
     },
   ];
 
   // ================================================================
-  // Display logic — no need to edit below
+  // Engine — no need to edit below this line
   // ================================================================
+
+  // Auto-generate stable IDs from title + categoryId
+  function makeId(clip) {
+    return (clip.categoryId + '-' + clip.title)
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
+  // Sort clips to match category order, preserving within-category order
+  const categoryOrder = categories.map(c => c.id);
+  const clips = clipsRaw
+    .filter(c => c.title) // skip blank entries
+    .map(c => ({ ...c, id: makeId(c) }))
+    .sort((a, b) => categoryOrder.indexOf(a.categoryId) - categoryOrder.indexOf(b.categoryId));
 
   let currentCategory = 'all';
 
@@ -470,7 +483,7 @@
     const grid = document.getElementById('clips-grid');
     const query = document.getElementById('search-input').value.toLowerCase();
 
-    let filtered = clips.filter(c => {
+    const filtered = clips.filter(c => {
       const inCat = currentCategory === 'all' || c.categoryId === currentCategory;
       const inSearch = !query ||
         c.title.toLowerCase().includes(query) ||
