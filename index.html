@@ -346,6 +346,62 @@
       transition: opacity 0.28s;
     }
 
+    /* Footer */
+    .site-footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 1.25rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .footer-copy a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .footer-copy a:hover { text-decoration: underline; }
+
+    .footer-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.35rem 0.85rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .footer-badge .disc-icon {
+      width: 16px; height: 16px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-badge .disc-icon::after {
+      content: '';
+      width: 8px; height: 1.5px;
+      background: white;
+      border-radius: 2px;
+      transform: rotate(-20deg);
+    }
+
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
@@ -366,6 +422,7 @@
       .clips-grid { grid-template-columns: 1fr; }
       .overlay { display: block; }
       .overlay.visible { opacity: 1; pointer-events: auto; }
+      .site-footer { padding: 1rem 1.25rem; flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -387,7 +444,7 @@
 <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
 <div class="app-body">
-  <aside id="sidebar">
+  <aside id="sidebar" class="collapsed">
     <div class="sidebar-inner">
       <div class="sidebar-section-label">All Plays</div>
       <button class="sidebar-btn active" onclick="filterCategory('all')" id="btn-all">
@@ -415,7 +472,22 @@
   </main>
 </div>
 
+<footer class="site-footer">
+  <p class="footer-copy">
+    All video clips are the property of
+    <a href="https://vimeo.com/user60100850" target="_blank" rel="noopener noreferrer">USA Ultimate</a>
+    and are used here solely for educational and non-commercial film study purposes.
+    &copy; <span id="footer-year"></span> USA Ultimate. All rights reserved.
+  </p>
+  <div class="footer-badge">
+    <span class="disc-icon"></span>
+    Video courtesy of USA Ultimate
+  </div>
+</footer>
+
 <script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
   // ================================================================
   // ✏️  CATEGORIES — define your categories here, in display order.
   //     Each entry needs: id, name, desc
@@ -587,7 +659,7 @@
     .sort((a, b) => categoryOrder.indexOf(a.categoryId) - categoryOrder.indexOf(b.categoryId));
 
   let currentCategory = 'all';
-  let sidebarOpen = true;
+  let sidebarOpen = false;
 
   function toggleSidebar() {
     sidebarOpen = !sidebarOpen;
