@@ -348,11 +348,10 @@
   //     Each entry needs: id, name, desc
   // ================================================================
   const categories = [
-    { id: 'offense',  name: 'Offense',      desc: 'Offensive sets, resets, and scoring plays' },
-    { id: 'defense',  name: 'Defense',      desc: 'Defensive positioning, poaches, and D-blocks' },
-    { id: 'handler',  name: 'Handler Sets', desc: 'Handler motion and reset systems' },
-    { id: 'endzone',  name: 'Endzone',      desc: 'End zone offense and defense' },
-    { id: 'zone',     name: 'Zone',         desc: 'Zone offense and defense' },
+    { id: 'offense',  name: 'Offense',                desc: 'Offensive sets, resets, and scoring plays' },
+    { id: 'defense',  name: 'Defense',                desc: 'Defensive positioning, poaches, and D-blocks' },
+    { id: 'handler',  name: 'Handler Sets (Endzone)', desc: 'Handler motion and reset systems' },
+    { id: 'zone',     name: 'Zone',                   desc: 'Zone offense and defense' },
   ];
 
   // ================================================================
@@ -374,65 +373,134 @@
       categoryId: 'offense',
       title: 'Defensively Forced Deep',
       notes: 'Dark #15 is being forced deep, so he does what he is forced. He then sees the disk is swung, so he runs to the other side where the disk will be.',
-      tags: ['isolation', 'vertical stack'],
+      tags: ['forced deep'],
       video: 'videos/Rutledge.mp4',
     },
     {
       categoryId: 'offense',
-      title: 'Well Timed Deep Cut',
-      notes: '#16 does not cut deep until he makes eye contact with the thrower.',
-      tags: ['isolation', 'deep cut'],
+      title: 'Deep Cut off of Openside Movement',
+      notes: 'This is the full point of a good flowing offense. The final cut (Done by #16) does not cut deep until he makes eye contact with the thrower.',
+      tags: ['deep cut'],
       video: 'videos/Anders.mp4',
     },
     {
       categoryId: 'offense',
-      title: 'Well Timed Continuation Cut off of Breakside Movement',
+      title: 'Continuation Cut off of Breakside Movement',
       notes: 'There are two cuts to the breakside. The first one sees the second one and decides to cut for him just when he finishes his cut by cutting back under for the disk.',
-      tags: ['isolation', 'break cut'],
+      tags: ['break cut'],
       video: 'videos/Osgar.mp4',
     },
     {
       categoryId: 'offense',
       title: 'Give and Go Continuation Cut',
       notes: '#34 runs immediately upline after throwing the disk because he sees open space that he knows he can take.',
-      tags: ['isolation', 'upline'],
+      tags: ['upline'],
       video: 'videos/Randolph.mp4',
+    },
+    {
+      categoryId: 'offense',
+      title: 'Defense to Offense Transition',
+      notes: 'The defense gets a block from a bad throw. The team make easy throws quickly to transition to offense. Players give enough space for each other to make sure each throw is easy.',
+      tags: ['Fastbreak'],
+      video: 'videos/Fastbreak.mp4',
+    },
+    {
+      categoryId: 'offense',
+      title: 'Crossfield Huck',
+      notes: 'The thrower does a small backhand fake to the openside, opening up the breakside huck. The cutter makes a hard cut to the breakside when he sees the fake.',
+      tags: ['huck'],
+      video: 'videos/Liam.mp4',
+    },
+    {
+      categoryId: 'offense',
+      title: 'Crossfield Hammer',
+      notes: 'The thrower knows the defender is unaware that the disc will go in the opposite direction. The cutter decides to run in the opposite direction of the disc to communicate that he is ready.',
+      tags: ['hammer'],
+      video: 'videos/CrossfieldHammer.mp4',
     },
 
     // ── DEFENSE ──────────────────────────────────────────────────
     {
       categoryId: 'defense',
+      title: 'Man on Man',
+      notes: '',
+      tags: ['normal defense'],
+      video: 'videos/ManDefense.mp4',
+    },
+    {
+      categoryId: 'defense',
+      title: 'Sealing',
+      notes: '',
+      tags: ['sealing'],
+      video: 'videos/Sealing.mp4',
+    },
+    {
+      categoryId: 'defense',
+      title: 'Deep Help',
+      notes: '',
+      tags: ['deep safety'],
+      video: 'videos/DeepHelp.mp4',
+    },
+    {
+      categoryId: 'defense',
       title: 'Bracket',
-      notes: 'Poacher reads the break-side look perfectly and picks off the around throw. Great communication with the marker to bait the throw.',
-      tags: ['bracket', 'switching'],
+      notes: '',
+      tags: ['switching'],
       video: '',
+    },
+    {
+      categoryId: 'defense',
+      title: 'Rolling in Handler Set',
+      notes: 'There are multiple chances for the white team to switch (or roll) in the handler space. They communicate when they want to and when they do not. They get scored on when there is a miscommunication on who has who.',
+      tags: ['switching'],
+      video: 'videos/Rolls.mp4',
+    },
+    {
+      categoryId: 'defense',
+      title: 'Switching between Cutters',
+      notes: 'Light multiple times switches who they are covering in the middle of the cut because they see one of their teammates is in a better position to mark a player. This is done with lots of communication.',
+      tags: ['switching'],
+      video: 'videos/CutterSwitching.mp4',
     },
 
     // ── HANDLER SETS ─────────────────────────────────────────────
     {
       categoryId: 'handler',
-      title: 'Dump-Swing-Break Sequence',
-      notes: 'Textbook 3-throw sequence: clean dump reset, immediate swing to the open side, then a sharp inside-out break to the end zone. The mark was late rotating.',
-      tags: ['dump', 'swing', 'break', 'reset'],
-      video: '',
+      title: 'Dump-Swing ',
+      notes: '',
+      tags: ['dump', 'swing'],
+      video: 'videos/DumpSwing.mp4',
+    },
+    {
+      categoryId: 'handler',
+      title: 'Upline Cut',
+      notes: '',
+      tags: ['upline'],
+      video: 'videos/Upline.mp4',
+    },
+    {
+      categoryId: 'handler',
+      title: 'Backdoor Cut',
+      notes: 'When the reset moves horizontally away from the defender, there is a small opening for the cutter to receive the disk. The cutter waits for the dump to catch the disk before cutting for the next throw. He waits a little longer than most people think.',
+      tags: ['dump'],
+      video: 'videos/Backdoor.mp4',
+    },
+    {
+      categoryId: 'handler',
+      title: '7 Cut',
+      notes: '#7 is the dump handler who starts running upline, he is covered. He then starts to run in almost the opposite direction to open a small throwing window to get the frisbee from the thrower.',
+      tags: ['handler'],
+      video: 'videos/Seven.mp4',
     },
 
-    // ── ENDZONE ──────────────────────────────────────────────────
-    {
-      categoryId: 'endzone',
-      title: '1 Cut in Endzone',
-      notes: "The cutter for the disk doesn't move to the open space until the thrower has the disc in his hand.",
-      tags: ['end zone', 'horizontal', 'timing'],
-      video: '',
-    },
 
     // ── ZONE ─────────────────────────────────────────────────────
     {
       categoryId: 'zone',
       title: 'Breaking a Zone',
       notes: "Every player is much closer no matter what. Fakes are constantly thrown. The thrower has to be very careful with the timing of the throw and the fake. The cutter has to be very patient and time their cut perfectly.",
-      tags: ['zone', 'fakes'],
-      video: '',
+      tags: ['pumpfakes'],
+      video: 'videos/Zone.mp4',
     },
   ];
 
