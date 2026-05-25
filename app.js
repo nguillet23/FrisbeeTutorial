@@ -75,6 +75,13 @@ const clipsRaw = [
     tags: ['hammer'],
     video: 'annotated_videos/Crossfield_Hammer_Annotated.mp4',
   },
+  {
+    categoryId: 'offense',
+    title: 'Butterfly Cut',
+    notes: 'The thrower knows the defender is unaware that the disc will go in the opposite direction. The cutter decides to run in the opposite direction of the disc to communicate that he is ready.',
+    tags: ['butterfly'],
+    video: 'annotated_videos/Butterfly_Annotated.mp4',
+  },
 
   // ── DEFENSE ──────────────────────────────────────────────────
   {
