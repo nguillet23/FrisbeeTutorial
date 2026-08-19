@@ -1,0 +1,54 @@
+.site-footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 1.25rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.footer-copy a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+.footer-copy a:hover { text-decoration: underline; }
+
+.footer-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.35rem 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.footer-badge .disc-icon {
+  width: 16px; height: 16px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.footer-badge .disc-icon::after {
+  content: '';
+  width: 8px; height: 1.5px;
+  background: white;
+  border-radius: 2px;
+  transform: rotate(-20deg);
+}
